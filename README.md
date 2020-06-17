@@ -18,6 +18,8 @@ note:
 
 ## Introduction
 
+[>Video Introduction](https://www.bilibili.com/video/BV1bp4y1D7ia/)
+
 - Hello Python 程序员//Hello Python programmer
 - 你可以用它//You can use it
 - 成为轻松刷Leetcode的大神//Become the God of leetcode
