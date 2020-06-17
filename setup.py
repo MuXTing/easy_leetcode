@@ -15,7 +15,7 @@ setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     license="MIT Licence",
-    url="https://github.com/425776024/easyleetcode",
+    url="https://github.com/425776024/easy_leetcode",
     author="Jiang.XinFa",
     author_email="425776024@qq.com",
     packages=find_packages(),
