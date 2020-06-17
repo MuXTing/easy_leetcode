@@ -29,8 +29,8 @@ def run(host="127.0.0.1", port=8080, py_cmd_path='python3 '):
     # every times running,path config.count_day 's count +=1 (running count log)
     utils.add_file_txt_count(config.count_day)
     print('_____running:____,please web browser', 'http://%s:%s' % (str(host), str(port)))
-    # uvicorn.run(app=app, host=host, port=port, log_level="error")
-    uvicorn.run(app=app, host=host, port=port)
+    uvicorn.run(app=app, host=host, port=port, log_level="error")
+    # uvicorn.run(app=app, host=host, port=port)
 
 
 if __name__ == '__main__':
