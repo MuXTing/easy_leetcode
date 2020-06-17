@@ -30,11 +30,17 @@ note:
 - 它运行非常流畅//It runs very smoothly
 - 你可以把它当中代码笔记包 // You can use it as leetcode study package
 ## code list view
-all code list , you can add new code problem or 
+all code list , you can add new code or 
 
-edit code or note markdown
+edit code or note markdown 
 or see video (if exist, tell me)
+
+or select contain keyword code use button 'Find'
 ![](imgs/code_view.png)
+
+## select code
+only see contain 'Sum' code
+![](imgs/code_view_find.png)
 
 ## code show view
 code detail view

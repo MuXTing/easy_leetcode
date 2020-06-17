@@ -14,7 +14,7 @@ import easyleetcode.config as config
 
 router = APIRouter()
 
-python_path = 'python3 '
+python_path = 'python '
 
 
 @router.get('/')
@@ -61,9 +61,25 @@ async def view(request: Request):
     return templates.TemplateResponse("code_list.html", {"request": request, "data": data, "message": "Leetcode List"})
 
 
+@router.get('/filter_view/{keyword}')
+async def view(request: Request, keyword: str = 'L'):
+    count_day = utils.get_file_txt_count(config.count_day)
+    count_view_code = utils.get_file_txt_count(config.count_view_code)
+    f_code_name_list = [ni for ni in code_name_list if keyword in ni[2]]
+    data = {
+        'all_num': len(code_name_list),
+        'count_day': count_day,
+        'count_view_code': count_view_code,
+        'code_name_list': f_code_name_list
+    }
+    return templates.TemplateResponse("code_list.html", {"request": request, "data": data, "message": "Leetcode List"})
+
+
 @router.get('/code/{name}')
 async def view_code(request: Request, name: str = '001_Two_Sum'):
     global code_name_map, code_map, code_name_list
+    if name not in code_name_map:
+        return templates.TemplateResponse("index.html", {"request": request, "message": 'Easy Leetcode'})
     # 代码路径
     code_path = code_name_map[name][1]
     # 代码markdwon路径
@@ -200,6 +216,8 @@ async def router_run(item: Item):
 @router.get('/md/{name}')
 async def view_md(request: Request, name: str = '001_Two_Sum'):
     global code_name_map, code_map, code_name_list
+    if name not in code_name_map:
+        return templates.TemplateResponse("index.html", {"request": request, "message": 'Easy Leetcode'})
     # 代码markdwon路径
     code_md_path = code_name_map[name][2]
     code_md_str = code_util.get_file_read(code_md_path)

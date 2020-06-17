@@ -16,6 +16,10 @@
             min-height: 40px;
             min-width: 60px;
         }
+
+
+
+
     </style>
 </head>
 <body>
@@ -27,10 +31,13 @@
     <button><a href="about"> About</a></button>
     <button><a href="help"> Help</a></button>
     <button><a href="https://github.com/425776024/easy_leetcode" target="_blank">Github</a></button>
-    <h5>Your Number of open : {[data['count_day']|tojson]} <br/> Your Number of view code : {[data['count_view_code']|tojson]}
+    <h5>Your Number of open : {[data['count_day']|tojson]} <br/> Your Number of view code :
+        {[data['count_view_code']|tojson]}
         <br/> Don't give up! </h5>
 </div>
-<div id="senetnce" align="left">
+<div id="senetnce" align="center">
+    <input align="center" v-model="keyword"/>
+    <button style="float:center" @click="find_func()">Find</button>
     <ul v-for="c in code_name_list" align="left">
         <button style="float:center" @click="click_func(c[0],c[1])">{{c[2]}}</button>
         <button style="float:right;color:red" @click="del_func(c[0],c[1])">Del me</button>
@@ -46,7 +53,8 @@
     var sentence_text = new Vue({
         el: '#senetnce',
         data:{
-            code_name_list:{[data['code_name_list']|tojson]}
+            code_name_list:{[data['code_name_list']|tojson]},
+            keyword:"L"
         },
         methods: {
             click_func:function (idx,name) {
@@ -55,7 +63,13 @@
                 url='http://'+host+'/code/'+name;
                 window.location.href = url;
             },
-            del_func:function (idx,name) {
+            find_func:function(){
+<!--                alert(sentence_text.keyword);-->
+                host = window.location.host;
+                url='http://'+host+'/filter_view/'+sentence_text.keyword;
+                window.location.href = url;
+            },
+            del_func:function(idx,name) {
                 if(confirm("realy delete "+name+" ?")){
                     console.log(name);
                     var info = prompt("input char : Y or y to delete");
@@ -79,6 +93,10 @@
             }
         }
 });
+
+
+
+
 
 
 

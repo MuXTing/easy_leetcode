@@ -15,7 +15,7 @@ app.mount("/static", config.statics, name="static")
 app.include_router(a_server.router)
 
 
-def run(host="127.0.0.1", port=8080, py_cmd_path='python3 '):
+def run(host="127.0.0.1", port=8080, py_cmd_path='python '):
     '''
 
     :param host: host
