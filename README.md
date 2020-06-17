@@ -7,6 +7,7 @@ then , only 2 line code , in any location:
 from easyleetcode import run
 
 run()
+# or run(host="127.0.0.1", port=8080, py_cmd_path='python ')
 # or run(host="127.0.0.1", port=8080, py_cmd_path='python3 ')
 ```
 
@@ -21,7 +22,7 @@ note:
 - 你可以用它//You can use it
 - 成为轻松刷Leetcode的大神//Become the God of leetcode
 - 你可以用它//You can use it
-- 在线运行你的任意Python代码//Run your arbitrary Python code online
+- 在线运行或添加你的任意Python代码//Run or add your arbitrary Python code online
 - 你可以用它//You can use it
 - 给你的任意Python代码做Markdwon笔记//Take markdwon notes for any Python code you want
 - 它运行非常流畅//It runs very smoothly

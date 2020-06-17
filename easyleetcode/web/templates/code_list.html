@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Code View</title>
     <script src="/static/vue.min.js"></script>
+    <script src="/static/axios_min.js"></script>
     <style>
         ul{
             list-style-type: none;
@@ -15,8 +16,6 @@
             min-height: 40px;
             min-width: 60px;
         }
-
-
     </style>
 </head>
 <body>
@@ -24,17 +23,19 @@
 <h1 align="center"> {[message]} </h1>
 <div align="center">
     <button><a href="/"> Home</a></button>
+    <button><a href="/addview"> Add</a></button>
     <button><a href="about"> About</a></button>
     <button><a href="help"> Help</a></button>
     <button><a href="https://github.com/425776024/easy_leetcode" target="_blank">Github</a></button>
-    <h5>you running times : {[data['count_day']|tojson]}  <br/> view code times : {[data['count_view_code']|tojson]} <br/> Don't give up! </h5>
+    <h5>Your Number of open : {[data['count_day']|tojson]} <br/> Your Number of view code : {[data['count_view_code']|tojson]}
+        <br/> Don't give up! </h5>
 </div>
-<div id="senetnce" align="center">
+<div id="senetnce" align="left">
     <ul v-for="c in code_name_list" align="left">
         <button style="float:center" @click="click_func(c[0],c[1])">{{c[2]}}</button>
-
-        <button style="float:right"><a href="https://www.youtube.com/">youtube</a></button>
-        <button style="float:right"><a href="https://www.bilibili.com/">bilibili</a></button>
+        <button style="float:right;color:red" @click="del_func(c[0],c[1])">Del me</button>
+        <button style="float:right"><a href="https://www.youtube.com/">no youtube</a></button>
+        <button style="float:right"><a href="https://www.bilibili.com/">no bilibili</a></button>
         <hr/>
     </ul>
     <br/>
@@ -53,9 +54,32 @@
                 host = window.location.host;
                 url='http://'+host+'/code/'+name;
                 window.location.href = url;
+            },
+            del_func:function (idx,name) {
+                if(confirm("realy delete "+name+" ?")){
+                    console.log(name);
+                    var info = prompt("input char : Y or y to delete");
+                    if (info=="y" || info=="Y"){
+                        console.log('delete:'+name);
+                        axios.put('/delete', {
+                            "name":name,
+                          })
+                          .then(function (response) {
+                            host = window.location.host;
+                            url='http://'+host+'/view';
+                            window.location.href = url;
+                          })
+                          .catch(function (error) {
+                            console.log(error);
+                          });
+
+
+                    }
+                }
             }
         }
 });
+
 
 
 

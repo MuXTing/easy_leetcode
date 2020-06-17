@@ -7,7 +7,7 @@ from fastapi import APIRouter
 
 from fastapi import Request
 from easyleetcode.config import templates
-from easyleetcode.web.code_all_in_map import get_all_code_map, get_file_read, call_py_file
+import easyleetcode.web.code_util as code_util
 from easyleetcode.web.Items import Item
 import easyleetcode.web.utils as utils
 import easyleetcode.config as config
@@ -32,19 +32,20 @@ async def about(request: Request):
     return templates.TemplateResponse("about.html", {"request": request, "message": 'Easy Leetcode'})
 
 
-# code map by id as key
-code_map = get_all_code_map()
-# code map by name as key
-code_name_map = {}
-for kid in sorted(code_map):
-    name, code_path, md_path = code_map[kid]
-    code_name_map[name] = (kid, code_path, md_path)
+code_map, code_name_map, code_name_list = utils.load_data()
 
-code_name_list = []
-for kid in sorted(code_map):
-    name, _, _ = code_map[kid]
-    title = name[2:].replace('_', ' ')
-    code_name_list.append([kid, name, title])
+
+def remove_name(name):
+    global code_name_map, code_map, code_name_list
+    kid = code_name_map[name][0]
+    del code_name_map[name]
+    del code_map[kid]
+    ci = None
+    for ci in code_name_list:
+        if ci[1] == name:
+            break
+    if ci is not None:
+        code_name_list.remove(ci)
 
 
 @router.get('/view')
@@ -62,13 +63,14 @@ async def view(request: Request):
 
 @router.get('/code/{name}')
 async def view_code(request: Request, name: str = '001_Two_Sum'):
+    global code_name_map, code_map, code_name_list
     # 代码路径
     code_path = code_name_map[name][1]
     # 代码markdwon路径
     code_md_path = code_name_map[name][2]
-    code_str = get_file_read(code_path)
-    code_md_str = get_file_read(code_md_path)
-    code_res = '\n'.join(call_py_file(code_path, python_path))
+    code_str = code_util.get_file_read(code_path)
+    code_md_str = code_util.get_file_read(code_md_path)
+    code_res = '\n'.join(code_util.call_py_file(code_path, python_path))
     data = {
         'code_str': code_str,
         'code_md_str': code_md_str,
@@ -82,6 +84,7 @@ async def view_code(request: Request, name: str = '001_Two_Sum'):
 
 @router.put('/save')
 async def save(item: Item):
+    global code_name_map, code_map, code_name_list
     name = item.name
     # python code
     code_str = item.code_str
@@ -103,15 +106,87 @@ async def save(item: Item):
     }
 
 
+@router.get('/addview')
+async def index(request: Request):
+    return templates.TemplateResponse("add_file.html", {"request": request, "message": 'Easy Leetcode'})
+
+
+@router.put('/delete')
+async def delete(item: Item):
+    global code_name_map, code_map, code_name_list
+    name = None
+    try:
+        name = item.name
+        # python code's path
+        code_path = code_name_map[name][1]
+        # python code's Markdown note 's path
+        code_md_path = code_name_map[name][2]
+        remove_name(name)
+        utils.del_file(code_path)
+        utils.del_file(code_md_path)
+        return {
+            'status': 'success',
+            'name': name
+        }
+    except Exception as e:
+        print(e)
+    return {
+        'status': 'error',
+        'name': name
+    }
+
+
+@router.put('/add')
+async def add_file(item: Item):
+    global code_name_map, code_map, code_name_list
+    name = item.name
+    # python code
+    code_str = item.code_str
+    # python code's Markdown note
+    code_md_str = item.code_md_str
+    if name not in code_name_map:
+        code_path = os.path.join(code_map[-1][1], name + '.py')
+        code_md_path = os.path.join(code_map[-1][2], name + '.md')
+    else:
+        return {
+            'status': 'error:file exist !',
+            'name': name
+        }
+
+    if code_str is None:
+        code_str = "print('" + name + "')"
+    if code_str is not None:
+        with open(code_path, 'w', encoding='utf-8') as of:
+            of.write(code_str)
+    if code_md_str is None:
+        code_md_str = "# " + name
+    if code_md_str is not None:
+        with open(code_md_path, 'w', encoding='utf-8') as of:
+            of.write(code_md_str)
+    try:
+        idx = int(name.split('_')[1])
+        title = name[2:].replace('_', ' ')
+    except:
+        idx = len(code_name_map) + 1
+        name = 'L_' + str(idx) + '_' + name
+        title = name[2:].replace('_', ' ')
+    code_map, code_name_map, code_name_list = utils.load_data()
+    return {
+        'status': 'success',
+        'name': name
+    }
+
+
 @router.put('/run')
 async def router_run(item: Item):
+    global code_name_map, code_map, code_name_list
     name = item.name
     code_str = item.code_str
     # code's python path, to temp path
     code_path = code_name_map[name][1].replace('.py', '_temp.py')
     with open(code_path, 'w', encoding='utf-8') as of:
         of.write(code_str)
-    code_res = '\n'.join(call_py_file(code_path, python_path))
+    code_res = '\n'.join(code_util.call_py_file(code_path, python_path))
     # rm temp path
     os.remove(code_path)
 
@@ -124,9 +199,10 @@ async def router_run(item: Item):
 
 @router.get('/md/{name}')
 async def view_md(request: Request, name: str = '001_Two_Sum'):
+    global code_name_map, code_map, code_name_list
     # 代码markdwon路径
     code_md_path = code_name_map[name][2]
-    code_md_str = get_file_read(code_md_path)
+    code_md_str = code_util.get_file_read(code_md_path)
     data = {
         'code_md_str': code_md_str,
         'name': name,
