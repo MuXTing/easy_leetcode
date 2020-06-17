@@ -9,7 +9,7 @@ with open("README.md", "r", encoding='UTF-8') as fh:
 
 setup(
     name="easyleetcode",
-    version="1.4.2",
+    version="1.5.0",
     keywords=("easyleetcode", "bilibili", 'youtube', 'leetcode'),
     description="Leetcode easy study use Python on web",
     long_description=long_description,
