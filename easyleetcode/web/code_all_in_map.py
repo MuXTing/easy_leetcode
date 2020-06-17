@@ -22,7 +22,7 @@ def get_all_code_map(code_dir=os.path.join(root_path, 'leetcodes'),
 
 
 def get_file_read(path: str):
-    pycode = open(path).read()
+    pycode = open(path,encoding='utf-8').read()
     return pycode
 
 

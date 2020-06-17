@@ -9,7 +9,7 @@ with open("README.md", "r", encoding='UTF-8') as fh:
 
 setup(
     name="easyleetcode",
-    version="1.3.0",
+    version="1.4.1",
     keywords=("easyleetcode", "bilibili", 'youtube', 'leetcode'),
     description="Leetcode easy study use Python on web",
     long_description=long_description,
@@ -21,5 +21,5 @@ setup(
     packages=find_packages(),
     include_package_data=True,
     platforms="any",
-    install_requires=['uvicorn', 'fastapi', 'pydantic', 'aiofiles']
+    install_requires=['uvicorn', 'fastapi', 'pydantic', 'aiofiles', 'jinja2']
 )

@@ -4,7 +4,6 @@
  
 ``` 
 class Solution(object):
-    # 思路1
     def twoSum(self, nums, target):
         nums_index = [(v, index) for index, v in enumerate(nums)]
         nums_index.sort()
@@ -17,7 +16,6 @@ class Solution(object):
                 begin += 1
             else:
                 end -= 1
-    # 思路2
     def twoSum2(self, nums, target):
         hashset = {}
         for i, m in enumerate(nums):
