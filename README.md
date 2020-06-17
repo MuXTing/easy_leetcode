@@ -26,17 +26,18 @@ note:
 - 你可以用它//You can use it
 - 给你的任意Python代码做Markdwon笔记//Take markdwon notes for any Python code you want
 - 它运行非常流畅//It runs very smoothly
-- 为刷Leetcode而生！//Born to brush leetcode!
-- 它永远免费！//It's free forever
-
+- 你可以把它当中代码笔记包 // You can use it as leetcode study package
 ## code list view
-all code list
+all code list , you can add new code problem or 
+
+edit code or note markdown
+or see video (if exist, tell me)
 ![](imgs/code_view.png)
 
 ## code show view
 code detail view
 
-you can run & degub & study & note markdown
+you can run & debug & study & add code & note Markdown
 
 you can edit you python code & run you code online !
 ![](imgs/code_show.png)
