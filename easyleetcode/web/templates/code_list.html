@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Code View</title>
+    <script src="/static/vue.min.js"></script>
+    <style>
+        ul{
+            list-style-type: none;
+            margin-left:100px;
+            margin-right:100px;
+        }
+         button{
+            background-color: #F8F8F8;
+            min-height: 40px;
+            min-width: 60px;
+        }
+
+
+    </style>
+</head>
+<body>
+
+<h1 align="center"> {[message]} </h1>
+<div align="center">
+    <button><a href="/"> Home</a></button>
+    <button><a href="about"> About</a></button>
+    <button><a href="help"> Help</a></button>
+    <button><a href="https://github.com/425776024/leetcodeandbilibili" target="_blank">Github</a></button>
+    <h5>you running times : {[data['count_day']|tojson]}  <br/> view code times : {[data['count_view_code']|tojson]} <br/> Don't give up! </h5>
+</div>
+<div id="senetnce" align="center">
+    <ul v-for="c in code_name_list" align="left">
+        <button style="float:center" @click="click_func(c[0],c[1])">{{c[2]}}</button>
+
+        <button style="float:right"><a href="https://www.youtube.com/">youtube</a></button>
+        <button style="float:right"><a href="https://www.bilibili.com/">bilibili</a></button>
+        <hr/>
+    </ul>
+    <br/>
+    <H6>Maker：425776024@qq.com</H6>
+</div>
+
+<script type="text/javascript">
+    var sentence_text = new Vue({
+        el: '#senetnce',
+        data:{
+            code_name_list:{[data['code_name_list']|tojson]}
+        },
+        methods: {
+            click_func:function (idx,name) {
+<!--                alert(idx+";;"+name);-->
+                host = window.location.host;
+                url='http://'+host+'/code/'+name;
+                window.location.href = url;
+            }
+        }
+});
+
+
+
+
+
+</script>
+</body>
+
+</html>
