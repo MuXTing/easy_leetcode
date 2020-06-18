@@ -39,8 +39,8 @@
     <input align="center" v-model="keyword"/>
     <button style="float:center" @click="find_func()">Find</button>
     <ul v-for="c in code_name_list" align="left">
-        <button style="float:center" @click="click_func(c[0],c[1])">{{c[2]}}</button>
-        <button style="float:right;color:red" @click="del_func(c[0],c[1])">Del me</button>
+        <button style="float:center" @click="click_func(c[0])">{{c[1]}}</button>
+        <button style="float:right;color:red" @click="del_func(c[0])">Del me</button>
         <button style="float:right"><a href="https://www.youtube.com/">no youtube</a></button>
         <button style="float:right"><a href="https://www.bilibili.com/">no bilibili</a></button>
         <hr/>
@@ -57,19 +57,17 @@
             keyword:"L"
         },
         methods: {
-            click_func:function (idx,name) {
-<!--                alert(idx+";;"+name);-->
+            click_func:function (name) {
                 host = window.location.host;
                 url='http://'+host+'/code/'+name;
                 window.location.href = url;
             },
             find_func:function(){
-<!--                alert(sentence_text.keyword);-->
                 host = window.location.host;
                 url='http://'+host+'/filter_view/'+sentence_text.keyword;
                 window.location.href = url;
             },
-            del_func:function(idx,name) {
+            del_func:function(name) {
                 if(confirm("realy delete "+name+" ?")){
                     console.log(name);
                     var info = prompt("input char : Y or y to delete");
@@ -86,8 +84,6 @@
                           .catch(function (error) {
                             console.log(error);
                           });
-
-
                     }
                 }
             }

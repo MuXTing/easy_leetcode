@@ -36,37 +36,27 @@ def del_file(path):
     os.remove(path)
 
 
-def get_all_code_map(code_dir=os.path.join(root_path, 'leetcodes'),
-                     code_md_dir=os.path.join(root_path, 'leetcodes_md')):
-    code_map = {}
-    code_map[-1] = ('root', code_dir, code_md_dir)
+def get_all_code_name_map(code_dir=os.path.join(root_path, 'leetcodes'),
+                          code_md_dir=os.path.join(root_path, 'leetcodes_md')):
+    code_name_map = {}
+    code_name_map['root'] = ('root', code_dir, code_md_dir)
     for fname in os.listdir(code_dir):
-        try:
-            idx = int(fname.split('_')[1])
-            name = fname[:-3]
-        except:
-            continue
+        name = fname[:-3]
         path = os.path.join(code_dir, fname)
         md_path = os.path.join(code_md_dir, name + '.md')
-        code_map[idx] = (name, path, md_path)
-    return code_map
+        code_name_map[name] = (name, path, md_path)
+    return code_name_map
 
 
 def load_data():
-    # code map by id as key
-    code_map = get_all_code_map()
-    # code map by name as key
-    code_name_map = {}
-    for kid in sorted(code_map):
-        name, code_path, md_path = code_map[kid]
-        code_name_map[name] = (kid, code_path, md_path)
+    code_name_map = get_all_code_name_map()
 
     code_name_list = []
-    for kid in sorted(code_map):
-        name, _, _ = code_map[kid]
+    for name in sorted(code_name_map):
+        name, _, _ = code_name_map[name]
         if name == 'root':
             continue
-        title = name[2:].replace('_', ' ')
-        code_name_list.append([kid, name, title])
+        title = ' '.join(name.split('_')[1:])
+        code_name_list.append([name, title])
     code_name_list = sorted(code_name_list)
-    return code_map, code_name_map, code_name_list
+    return code_name_map, code_name_list

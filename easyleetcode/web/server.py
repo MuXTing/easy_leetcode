@@ -32,17 +32,16 @@ async def about(request: Request):
     return templates.TemplateResponse("about.html", {"request": request, "message": 'Easy Leetcode'})
 
 
-code_map, code_name_map, code_name_list = utils.load_data()
+code_name_map, code_name_list = utils.load_data()
 
 
 def remove_name(name):
-    global code_name_map, code_map, code_name_list
-    kid = code_name_map[name][0]
+    global code_name_map, code_name_list
     del code_name_map[name]
-    del code_map[kid]
+
     ci = None
     for ci in code_name_list:
-        if ci[1] == name:
+        if ci[0] == name:
             break
     if ci is not None:
         code_name_list.remove(ci)
@@ -65,7 +64,7 @@ async def view(request: Request):
 async def view(request: Request, keyword: str = 'L'):
     count_day = utils.get_file_txt_count(config.count_day)
     count_view_code = utils.get_file_txt_count(config.count_view_code)
-    f_code_name_list = [ni for ni in code_name_list if keyword in ni[2]]
+    f_code_name_list = [ni for ni in code_name_list if keyword in ni[1]]
     data = {
         'all_num': len(code_name_list),
         'count_day': count_day,
@@ -77,7 +76,7 @@ async def view(request: Request, keyword: str = 'L'):
 
 @router.get('/code/{name}')
 async def view_code(request: Request, name: str = '001_Two_Sum'):
-    global code_name_map, code_map, code_name_list
+    global code_name_map
     if name not in code_name_map:
         return templates.TemplateResponse("index.html", {"request": request, "message": 'Easy Leetcode'})
     # 代码路径
@@ -100,7 +99,7 @@ async def view_code(request: Request, name: str = '001_Two_Sum'):
 
 @router.put('/save')
 async def save(item: Item):
-    global code_name_map, code_map, code_name_list
+    global code_name_map
     name = item.name
     # python code
     code_str = item.code_str
@@ -129,7 +128,7 @@ async def index(request: Request):
 
 @router.put('/delete')
 async def delete(item: Item):
-    global code_name_map, code_map, code_name_list
+    global code_name_map
     name = None
     try:
         name = item.name
@@ -154,15 +153,13 @@ async def delete(item: Item):
 
 @router.put('/add')
 async def add_file(item: Item):
-    global code_name_map, code_map, code_name_list
+    global code_name_map, code_name_list
     name = item.name
-    # python code
     code_str = item.code_str
-    # python code's Markdown note
     code_md_str = item.code_md_str
     if name not in code_name_map:
-        code_path = os.path.join(code_map[-1][1], name + '.py')
-        code_md_path = os.path.join(code_map[-1][2], name + '.md')
+        code_path = os.path.join(code_name_map['root'][1], name + '.py')
+        code_md_path = os.path.join(code_name_map['root'][2], name + '.md')
     else:
         return {
             'status': 'error:file exist !',
@@ -179,14 +176,8 @@ async def add_file(item: Item):
     if code_md_str is not None:
         with open(code_md_path, 'w', encoding='utf-8') as of:
             of.write(code_md_str)
-    try:
-        idx = int(name.split('_')[1])
-        title = name[2:].replace('_', ' ')
-    except:
-        idx = len(code_name_map) + 1
-        name = 'L_' + str(idx) + '_' + name
-        title = name[2:].replace('_', ' ')
-    code_map, code_name_map, code_name_list = utils.load_data()
+
+    code_name_map, code_name_list = utils.load_data()
     return {
         'status': 'success',
         'name': name
@@ -195,7 +186,7 @@ async def add_file(item: Item):
 
 @router.put('/run')
 async def router_run(item: Item):
-    global code_name_map, code_map, code_name_list
+    global code_name_map
     name = item.name
     code_str = item.code_str
     # code's python path, to temp path
@@ -215,7 +206,7 @@ async def router_run(item: Item):
 
 @router.get('/md/{name}')
 async def view_md(request: Request, name: str = '001_Two_Sum'):
-    global code_name_map, code_map, code_name_list
+    global code_name_map
     if name not in code_name_map:
         return templates.TemplateResponse("index.html", {"request": request, "message": 'Easy Leetcode'})
     # 代码markdwon路径
