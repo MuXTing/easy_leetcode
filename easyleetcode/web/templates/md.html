@@ -12,9 +12,9 @@
 <body>
 <div align="center" id="md_view">
     <h1>{{name}} 's Markdown Edit </h1>
-    <button><a href="/view"> View</a></button>
-    <button><a href="/about"> About</a></button>
-    <button><a href="/help"> Help</a></button>
+    <button><a href="/view" target="_blank"> View</a></button>
+    <button><a href="/about" target="_blank"> About</a></button>
+    <button><a href="/help" target="_blank"> Help</a></button>
     <button><a href="https://github.com/425776024/easy_leetcode" target="_blank">Github</a></button>
     <button @click="save_func()">Save Markdown</button>
 </div>
@@ -297,7 +297,7 @@ var md_view = new Vue({
                   .then(function (response) {
                     host = window.location.host;
                     url='http://'+host+'/code/'+response.data['name'];
-                    window.location.href = url;
+                    window.open(url);
                   })
                   .catch(function (error) {
                     console.log(error);

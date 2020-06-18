@@ -18,10 +18,10 @@
 
 <h1 align="center"> {[message]} </h1>
 <div align="center">
-    <button><a href="/">Home</a></button>
-    <button><a href="/view">View</a></button>
-    <button><a href="/addview"> Add</a></button>
-    <button><a href="/help">Help</a></button>
+    <button><a href="/" target="_blank">Home</a></button>
+    <button><a href="/view" target="_blank">View</a></button>
+    <button><a href="/addview" target="_blank"> Add</a></button>
+    <button><a href="/help" target="_blank">Help</a></button>
 </div>
 <h6></h6>
 <div id="code" align="center">
@@ -48,7 +48,7 @@ var code = new Vue({
                   .then(function (response) {
                     host = window.location.host;
                     url='http://'+host+'/code/'+response.data['name'];
-                    window.location.href = url;
+                    window.open(url);
                   })
                   .catch(function (error) {
                     console.log(error);
