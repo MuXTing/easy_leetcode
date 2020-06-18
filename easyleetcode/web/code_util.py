@@ -5,8 +5,6 @@
 import os
 
 
-
-
 def get_file_read(path: str):
     pycode = open(path, encoding='utf-8').read()
     return pycode
@@ -14,7 +12,8 @@ def get_file_read(path: str):
 
 def call_py_file(path, python_path='python3 '):
     try:
-        s = os.popen(python_path + path, 'r', 1)
+        path = python_path + '"' + path + '"'
+        s = os.popen(path, 'r', 1)
         res = s.read()
         out = []
         for line in res.splitlines():
@@ -22,5 +21,3 @@ def call_py_file(path, python_path='python3 '):
         return out
     except:
         return ['null']
-
-

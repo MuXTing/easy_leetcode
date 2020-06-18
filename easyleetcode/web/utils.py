@@ -54,11 +54,11 @@ def load_data():
     code_name_map = get_all_code_name_map()
 
     code_name_list = []
-    for name in sorted(code_name_map):
+    for i, name in enumerate(sorted(code_name_map)):
         name, _, _ = code_name_map[name]
         if name == 'root':
             continue
         title = ' '.join(name.split('_'))
-        code_name_list.append([name, title])
+        code_name_list.append([name, str(i + 1) + ' : ' + title])
     code_name_list = sorted(code_name_list)
     return code_name_map, code_name_list
