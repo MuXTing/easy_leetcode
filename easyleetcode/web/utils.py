@@ -41,6 +41,8 @@ def get_all_code_name_map(code_dir=os.path.join(root_path, 'leetcodes'),
     code_name_map = {}
     code_name_map['root'] = ('root', code_dir, code_md_dir)
     for fname in os.listdir(code_dir):
+        if '.py' not in fname:
+            continue
         name = fname[:-3]
         path = os.path.join(code_dir, fname)
         md_path = os.path.join(code_md_dir, name + '.md')
@@ -56,7 +58,7 @@ def load_data():
         name, _, _ = code_name_map[name]
         if name == 'root':
             continue
-        title = ' '.join(name.split('_')[1:])
+        title = ' '.join(name.split('_'))
         code_name_list.append([name, title])
     code_name_list = sorted(code_name_list)
     return code_name_map, code_name_list
