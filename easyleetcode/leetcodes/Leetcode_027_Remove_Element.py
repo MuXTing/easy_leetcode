@@ -1,41 +1,18 @@
-# class Solution(object):
-#     def removeElement(self, nums, val):
-#         """
-#         :type nums: List[int]
-#         :type val: int
-#         :rtype: int
-#         """
-class Solution(object):
-    # def removeElement(self, nums, val):
-    #     ls = len(nums)
-    #     if ls == 0:
-    #         return ls
-    #     pos = 0
-    #     for i in range(ls):
-    #         if nums[i] == val:
-    #             continue
-    #         else:
-    #             nums[pos] = nums[i]
-    #             pos += 1
-    #     # del nums[pos:]
-    #     return pos
 
-    def removeElement(self, nums, val):
-        ls = len(nums)
-        if ls == 0:
-            return ls
-        count = 0
-        index = 0
-        while index < ls - count:
-            if nums[index] == val:
-                nums[index] = nums[ls - 1 - count]
-                count += 1
-            else:
-                index += 1
-        return ls - count
+class Solution:
+    def call(self, arr, elem):
+        i = 0
+        j = 0
+        while i < len(arr):
+            # 如果相当则忽略，进入下一个位置
+            if arr[i] == elem:
+                pass
+            else:  # 如果不等，则加入新的以left为长度计算的arr
+                arr[j] = arr[i]
+                j += 1  # left长度加以
+            i += 1  # 进入下一轮判断
+        return (j, arr[0:j])
 
-if __name__ == '__main__':
-    # begin
-    s = Solution()
-    print s.removeElement([1], 1)
 
+s = Solution()
+print(s.call([0, 4, 4, 0, 0, 2, 4, 4, 1, 2, 3, 4, 8], 4))

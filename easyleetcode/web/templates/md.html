@@ -297,7 +297,7 @@ var md_view = new Vue({
                   .then(function (response) {
                     host = window.location.host;
                     url='http://'+host+'/code/'+response.data['name'];
-                    window.open(url);
+                    window.location.href = url;
                   })
                   .catch(function (error) {
                     console.log(error);

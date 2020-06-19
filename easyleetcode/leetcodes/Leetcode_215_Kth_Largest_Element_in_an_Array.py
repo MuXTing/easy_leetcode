@@ -1,40 +1,39 @@
-class Solution(object):
-    # def findKthLargest(self, nums, k):
-    #     """
-    #     :type nums: List[int]
-    #     :type k: int
-    #     :rtype: int
-    #     """
-    #     return sorted(nums, reverse=True)[k - 1]
 
-    # def findKthLargest(self, nums, k):
-    #     # build min heap
-    #     heapq.heapify(nums)
-    #     # remove n - k smallest number
-    #     while len(nums) > k:
-    #         heapq.heappop(nums)
-    #     return nums[0]
-    #     #return heapq.nlargest(k, nums)[-1]
+class Solution:
+    def call(self, nums, k):
+        if nums == None or len(nums) == 0:
+            return -1
+        result = self.qsort(nums, 0, len(nums) - 1, k)
+        return result
 
-    def findKthLargest(self, nums, k):
-        # shuffle nums to avoid n*n
-        random.shuffle(nums)
-        return self.quickSelection(nums, 0, len(nums) - 1, len(nums) - k)
+    def qsort(self, nums, L, u, k):
+        '''
+        快排的一次快排操作函数
+        :param nums:
+        :param L: 左边
+        :param u: 右边
+        :param k: 第k大
+        :return:
+        '''
+        if L >= u:
+            return nums[u]
 
-    def quickSelection(self, nums, start, end, k):
-        if start > end:
-            return float('inf')
-        pivot = nums[end]
-        left = start
-        for i in range(start, end):
-            if nums[i] <= pivot:
-                # swip left and i
-                nums[left], nums[i] = nums[i], nums[left]
-                left += 1
-        nums[left], nums[end] = nums[end], nums[left]
-        if left == k:
-            return nums[left]
-        elif left < k:
-            return self.quickSelection(nums, left + 1, end, k)
-        else:
-            return self.quickSelection(nums, start, left - 1, k)
+        m = L
+        for i in range(L + 1, u + 1):  # u + 1保证遍历到u位置的值
+            # 以nums[L]为基准，只要m右边的比它大就转到m左边
+            if nums[i] > nums[L]:
+                m += 1
+                nums[m], nums[i] = nums[i], nums[m]
+        # 此时，m左边的比nums[m]大，右边的比nums[m]小
+        nums[m], nums[L] = nums[L], nums[m]
+        # m左边有m-1个数，nums[m]是第m+1大（1开始）
+        if m + 1 == k:
+            return nums[m]
+        elif m + 1 > k:  # 左边大于k-1个数时，第k大在左边
+            return self.qsort(nums, L, m - 1, k)
+        else:  # 小于k时，第k大在右边
+            return self.qsort(nums, m + 1, u, k)
+
+
+s = Solution()
+print(s.call([6, 7, 9, 3, 2, 4, 8], 4))

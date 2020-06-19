@@ -3,46 +3,21 @@
 --- 
  
 ``` 
-# class Solution(object):
-#     def removeElement(self, nums, val):
-#         """
-#         :type nums: List[int]
-#         :type val: int
-#         :rtype: int
-#         """
-class Solution(object):
-    # def removeElement(self, nums, val):
-    #     ls = len(nums)
-    #     if ls == 0:
-    #         return ls
-    #     pos = 0
-    #     for i in range(ls):
-    #         if nums[i] == val:
-    #             continue
-    #         else:
-    #             nums[pos] = nums[i]
-    #             pos += 1
-    #     # del nums[pos:]
-    #     return pos
 
-    def removeElement(self, nums, val):
-        ls = len(nums)
-        if ls == 0:
-            return ls
-        count = 0
-        index = 0
-        while index < ls - count:
-            if nums[index] == val:
-                nums[index] = nums[ls - 1 - count]
-                count += 1
-            else:
-                index += 1
-        return ls - count
+Given an array and a value, remove all occurrences of that value in place and
+ return the new length.
 
-if __name__ == '__main__':
-    # begin
-    s = Solution()
-    print s.removeElement([1], 1)
+The order of elements can be changed, and the elements after the new length 
+don't matter.
 
+Example
+Given an array [0,4,4,0,0,2,4,4], value=4
+
+return 4 and front four elements of the array is [0,0,0,2]
+
+
+
+一句话总结：拿两个指示变量i,j从0开始，i只负责遍历所有的值，j负责保存不包含elem的索引，
+i循环完了j的长度就是新的数组长度，新的数组内容就是0:j
 
  ```

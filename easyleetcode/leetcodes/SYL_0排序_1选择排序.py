@@ -10,5 +10,5 @@ def Sort(arr):
 
 
 if __name__ == '__main__':
-    arr = Sort([3, 5, 1, 2, 6, 7, 9, 11])
+    arr = Sort([3, 5, 1, 2, 6, 7, 9, 11,22])
     print(arr)

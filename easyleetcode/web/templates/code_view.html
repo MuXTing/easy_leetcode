@@ -328,9 +328,9 @@ var code = new Vue({
                     "name":this.name,
                   })
                   .then(function (response) {
-                    host = window.location.host;
-                    url='http://'+host+'/code/'+response.data['name'];
-                    window.open = url;
+<!--                    host = window.location.host;-->
+<!--                    url='http://'+host+'/code/'+response.data['name'];-->
+<!--                    window.location.href = url;-->
                   })
                   .catch(function (error) {
                     console.log(error);

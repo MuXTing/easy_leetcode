@@ -26,6 +26,7 @@ def run(host="127.0.0.1", port=8080, py_cmd_path='python '):
     print('your host is :', host)
     print('your port is :', port)
     print('your python execute path is :', py_cmd_path, '(use command:', py_cmd_path, ' xxx.py to run python)')
+    print('If you run error in Windows platform,tell me .Because Windows platform I have\'t test')
 
     config.templates.env.variable_start_string = '{['
     config.templates.env.variable_end_string = ']}'

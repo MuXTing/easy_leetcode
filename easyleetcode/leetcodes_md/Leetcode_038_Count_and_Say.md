@@ -3,31 +3,24 @@
 --- 
  
 ``` 
-class Solution:
-    def countAndSay(self, n):
-        """
-        :type n: int
-        :rtype: str
-        """
-        if n == 1:
-            return '1'
-        x = '1'
-        while n > 1:
-            # each round, read itself
-            x = self.count(x)
-            n -= 1
-        return x
+The count-and-say sequence is the sequence of integers beginning as follows:
 
-    def count(self, x):
-        m = list(x)
-        res = []
-        m.append(None)
-        i , j = 0 , 0
-        while i < len(m) - 1:
-            j += 1
-            if m[j] != m[i]:
-                # note j - i is the count of m[i]
-                res += [j - i, m[i]]
-                i = j
-        return ''.join(str(s) for s in res)
- ```
+1, 11, 21, 1211, 111221, ...
+
+1 is read off as "one 1" or 11.
+
+11 is read off as "two 1s" or 21.
+
+21 is read off as "one 2, then one 1" or 1211.
+
+Given an integer n, generate the nth sequence.
+
+Example
+Given n = 5, return "111221".
+
+Note
+The sequence of integers will be represented as a string.
+
+```
+
+---

@@ -3,35 +3,28 @@
 --- 
  
 ``` 
-class Solution(object):
-    def twoSum(self, nums, target):
-        nums_index = [(v, index) for index, v in enumerate(nums)]
-        nums_index.sort()
-        begin, end = 0, len(nums) - 1
-        while begin < end:
-            curr = nums_index[begin][0] + nums_index[end][0]
-            if curr == target:
-                return [nums_index[begin][1], nums_index[end][1]]
-            elif curr < target:
-                begin += 1
-            else:
-                end -= 1
-    def twoSum2(self, nums, target):
-        hashset = {}
-        for i, m in enumerate(nums):
-            if target - m not in hashset:
-                hashset[m] = i
-            else:
-                return (hashset[target - m], i)
+Given an array of integers, find two numbers such that they add up to a specific target number.
+
+The function twoSum should return indices of the two numbers such that they add up to the target, where index1 must be less than index2. Please note that your returned answers (both index1 and index2) are NOT zero-based.
+
+Example
+numbers=[2, 7, 11, 15], target=9
+
+return [1, 2]
+
+Note
+You may assume that each input would have exactly one solution
+
+Challenge
+Either of the following solutions are acceptable:
+
+O(n) Space, O(nlogn) Time
+O(n) Space, O(n) Time
 
 
-def run():
-    s = Solution()
-    print(s.twoSum2([3, 2, 4], 6))
-    print('hello7')
+找出数组中和为某个数的两个数的序号
+思路：和为k等价与k-a=b，建立字典，遍历每个元素ai
+如果k-ai不存在字典中就记下ai的位置i来，到下一个数如果k-aj=ai在字典中，那么结果就是(i,j)
 
+```
 
-
-if __name__ == '__main__':
-    run()
- ```
