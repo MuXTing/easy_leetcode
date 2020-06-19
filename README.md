@@ -1,6 +1,10 @@
 # easyleetcode
 
-use it：`pip install easyleetcode`
+use it, from pip：`pip install easyleetcode`
+
+or use it, from source code : **clone source** then:
+- 1.pip install these package >> `['uvicorn', 'fastapi', 'pydantic', 'aiofiles', 'jinja2']`
+- 2.run python script : `easyleetcode/web/main.py`
 
 then , only 2 line code , in any location:
 ```python
@@ -33,6 +37,7 @@ note:
 >> run(host="127.0.0.1", port=8080, py_cmd_path='D:\xxx\Python\python3.exe ')
 
 
+---
 
 ## Introduction
 
@@ -47,6 +52,10 @@ note:
 - 给你的任意Python代码做Markdwon笔记//Take markdwon notes for any Python code you want
 - 它运行非常流畅//It runs very smoothly
 - 你可以把它当做代码笔记包 // You can use it as leetcode study package
+
+
+---
+
 ## code list view
 all code list , you can add new code or 
 
@@ -56,9 +65,13 @@ or see video (if exist, tell me)
 or select contain keyword code use button 'Find'
 ![](https://img-blog.csdnimg.cn/20200618094421276.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ppYW5nNDI1Nzc2MDI0,size_16,color_FFFFFF,t_70)
 
+---
+
 ## select code
 only see contain 'Sum' code
 ![](https://img-blog.csdnimg.cn/20200618094439396.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ppYW5nNDI1Nzc2MDI0,size_16,color_FFFFFF,t_70)
+
+---
 
 ## code show view
 code detail view
@@ -68,12 +81,15 @@ you can run & debug & study & add code & note Markdown
 you can edit you python code & run you code online !
 ![](https://img-blog.csdnimg.cn/20200618094455622.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ppYW5nNDI1Nzc2MDI0,size_16,color_FFFFFF,t_70)
 
+---
 
 ## code markdown note view
 code's markdown note 
 
 you can click Edit Button to Edit you note
 ![](https://img-blog.csdnimg.cn/20200618094510997.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ppYW5nNDI1Nzc2MDI0,size_16,color_FFFFFF,t_70)
+
+---
 
 ## code markdown note edit view
 code's markdown note can easy online edit, and 
