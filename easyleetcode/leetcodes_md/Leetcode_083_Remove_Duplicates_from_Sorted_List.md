@@ -3,42 +3,19 @@
 --- 
  
 ``` 
-# Definition for singly-linked list.
-# class ListNode(object):
-#     def __init__(self, x):
-#         self.val = x
-#         self.next = None
+'''
+Given a sorted linked list,
+delete all duplicates such that each element appear only once.
 
-class Solution(object):
-    # def deleteDuplicates(self, head):
-    #     """
-    #     :type head: ListNode
-    #     :rtype: ListNode
-    #     """
-    #     if head is None:
-    #         return None
-    #     temp = ListNode(2147483647)
-    #     temp.next = head
-    #     pos = head
-    #     head = temp
-    #     last = head
-    #     while pos is not None:
-    #         if last.val == pos.val:
-    #             last.next = pos.next
-    #         else:
-    #             last = pos
-    #         pos = pos.next
-    #     return head.next
+Example
+Given 1->1->2, return 1->2.
+Given 1->1->2->3->3, return 1->2->3.
+'''
 
-    def deleteDuplicates(self, head):
-        if head is None:
-            return None
-        pos = head
-        while pos is not None and pos.next is not None:
-            if pos.val == pos.next.val:
-                pos.next = pos.next.next
-            else:
-                pos = pos.next
-        return head
+'''
+遇到当前节点和下一节点的值相同时，删除下一节点，并将当前节点next值指向下一个节点的next, 
+当前节点首先保持不变，直到相邻节点的值不等时才移动到下一节点。
+'''
+
 
  ```

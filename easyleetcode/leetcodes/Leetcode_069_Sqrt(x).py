@@ -1,35 +1,24 @@
 class Solution:
-    # def mySqrt(self, x):
-    #     """
-    #     :type x: int
-    #     :rtype: int
-    #     """
-    #     if x == 0:
-    #         return 0
-    #     low = 0
-    #     high = x
-    #     last = x
-    #     while high >= low:
-    #         mid = (low + high) / 2
-    #         temp = mid * mid
-    #         if temp == x:
-    #             return mid
-    #         elif temp < x:
-    #             low = mid + 1
-    #             last = mid
-    #         else:
-    #             high = mid - 1
-    #     return last
-
+    # @param {integer} x
+    # @return {integer}
     def mySqrt(self, x):
-        # sqrt(x) = 2 * sqrt(x / 4) for n % 4 == 0
-        # sqrt(x) = 1 + 2 * sqrt(x / 4) for n % 4 != 0
-        if x == 0:
+        if x < 0:
+            return -1
+        elif x == 0:
             return 0
-        if x < 4:
-            return 1
-        res = 2 * self.mySqrt(x / 4)
-        # (res + 1) * (res + 1) >= 0 for avoiding overflow
-        if (res + 1) * (res + 1) <= x and (res + 1) * (res + 1) >= 0:
-            return res + 1
-        return  res
+
+        start, end = 1, x
+        while start + 1 < end:
+            mid = start + (end - start) / 2
+            if mid ** 2 == x:
+                return mid
+            # mid此时过大，那真实值在mid左边，所以end=mid逼近
+            elif mid ** 2 > x:
+                end = mid
+            else:  # mid此时小于目标，那么真实在右边，所以start逼近
+                start = mid
+        return start
+
+
+s = Solution()
+print(s.mySqrt(9))

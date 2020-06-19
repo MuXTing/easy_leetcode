@@ -3,35 +3,18 @@
 --- 
  
 ``` 
-class Solution(object):
-    # def singleNumber(self, nums):
-    #     """
-    #     :type nums: List[int]
-    #     :rtype: int
-    #     """
-    #     import ctypes
-    #     # note that if res is not c 32
-    #     # there will be errors
-    #     count = [0] * 32
-    #     res = ctypes.c_int32(0)
-    #     for i in range(32):
-    #         for num in nums:
-    #             if (ctypes.c_int32(num).value >> i) & 1:
-    #                 count[i] += 1
-    #         res.value |= ((count[i] % 3) << i)
-    #     return res.value
 
-    def singleNumber(self, nums):
-        # bitmask
-        # ones as a bitmask to represent the ith bit had appeared once.
-        # twos as a bitmask to represent the ith bit had appeared twice.
-        # threes as a bitmask to represent the ith bit had appeared three times.
-        ones, twos, threes = 0, 0, 0
-        for num in nums:
-            twos |= ones & num
-            ones ^= num
-            threes = ones & twos
-            ones &= ~threes
-            twos &= ~threes
-        return ones
+Given [1,1,2,3,3,3,2,2,4,1] return 4
+
+Challenge
+One-pass, constant extra space.
+共有3*n + 1个数，且有且仅有一个数落单，要找出相应的「单数」
+
+使用不进位加法，三个3相加的结果为:
+0011
+0011
+0011
+----
+0033
+
  ```

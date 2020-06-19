@@ -3,50 +3,28 @@
 --- 
  
 ``` 
-class Solution(object):
-    def majorityElement(self, nums):
-        # O(1) space
-        ls = len(nums)
-        res = []
-        check_value = []
-        for i in range(ls):
-            if nums[i] in check_value:
-                continue
-            count = 1
-            for j in range(i + 1, ls):
-                if nums[i] == nums[j]:
-                    count += 1
-            if count > ls / 3:
-                res.append(nums[i])
-            check_value.append(nums[i])
-        return res
+'''
+Given an array of integers,
+the majority number is the number that occurs more than 1/3 of the size of the array.
 
-    # def majorityElement(self, nums):
-    #     # using dict
-    #     count_hash = {}
-    #     res = []
-    #     for i in nums:
-    #         try:
-    #             count_hash[i] += 1
-    #         except KeyError:
-    #             count_hash[i] = 1
-    #     for k, v in count_hash.iteritems():
-    #         if v > len(nums) / 3:
-    #             res.append(k)
-    #     return res
+Find it.
 
-    # def majorityElement(self, nums):
-    #     """
-    #     :type nums: List[int]
-    #     :rtype: List[int]
-    #     """
-    #     #https://leetcode.com/discuss/76542/easy-python-solution
-    #     tmp = {}
-    #     res = []
-    #     for n in list(set(nums)):
-    #         tmp[n] = nums.count(n)
-    #     for k, v in tmp.iteritems():
-    #         if v > len(nums) / 3:
-    #             res.append(k)
-    #     return res
+Example
+Given [1, 2, 1, 2, 1, 3, 3], return 1.
+
+Note
+There is only one majority number in the array.
+
+Challenge
+O(n) time and O(1) extra space.
+'''
+
+'''
+经过举了很多例子分析得出，任意一个数组出现次数大于 n/3 的数最多有：3个
+那么有了这个信息，使用投票法的核心是找出两个候选数进行投票，需要两遍遍历，
+第一遍历找出两个候选数，
+第二遍遍历重新投票验证这两个候选数是否为符合题意
+'''
+
+
  ```

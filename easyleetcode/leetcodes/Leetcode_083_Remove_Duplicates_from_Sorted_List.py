@@ -1,37 +1,50 @@
-# Definition for singly-linked list.
-# class ListNode(object):
-#     def __init__(self, x):
-#         self.val = x
-#         self.next = None
 
-class Solution(object):
-    # def deleteDuplicates(self, head):
-    #     """
-    #     :type head: ListNode
-    #     :rtype: ListNode
-    #     """
-    #     if head is None:
-    #         return None
-    #     temp = ListNode(2147483647)
-    #     temp.next = head
-    #     pos = head
-    #     head = temp
-    #     last = head
-    #     while pos is not None:
-    #         if last.val == pos.val:
-    #             last.next = pos.next
-    #         else:
-    #             last = pos
-    #         pos = pos.next
-    #     return head.next
 
+class ListNode:
+    def __init__(self, x):
+        self.val = x
+        self.next = None
+
+
+def make_list(arr: list):
+    head_node = None
+    p_node = None
+    for a in arr:
+        new_node = ListNode(a)
+        if head_node is None:
+            head_node = new_node
+            p_node = new_node
+        else:
+            p_node.next = new_node
+            p_node = new_node
+    return head_node
+
+
+def print_list(head: ListNode):
+    while head is not None:
+        print(head.val, end=',')
+        head = head.next
+
+
+class Solution:
     def deleteDuplicates(self, head):
         if head is None:
             return None
-        pos = head
-        while pos is not None and pos.next is not None:
-            if pos.val == pos.next.val:
-                pos.next = pos.next.next
+
+        node = head
+        while node.next is not None:
+            if node.val == node.next.val:
+                node.next = node.next.next
             else:
-                pos = pos.next
+                node = node.next
+
         return head
+
+
+s = Solution()
+a = [1, 1, 2, 3, 4, 4, 5]
+head = make_list(a)
+print_list(head)
+head = s.deleteDuplicates(head)
+print()
+print_list(head)

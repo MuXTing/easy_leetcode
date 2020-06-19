@@ -154,7 +154,7 @@ async def delete(item: Item):
 @router.put('/add')
 async def add_file(item: Item):
     global code_name_map, code_name_list
-    name = item.name
+    name = item.name.strip().replace(' ', '_')
     code_str = item.code_str
     code_md_str = item.code_md_str
     if name not in code_name_map:
