@@ -9,6 +9,8 @@ from easyleetcode import run
 run()
 # or run(host="127.0.0.1", port=8080, py_cmd_path='python ')
 # or run(host="127.0.0.1", port=8080, py_cmd_path='python3 ')
+# or run(host="127.0.0.1", port=8080, py_cmd_path='/Users/xxxxx/anaconda3/bin/python3 ')
+# or run(host="127.0.0.1", port=8080, py_cmd_path='D:\xxx\Python\python3.exe ')
 ```
 
 note:
