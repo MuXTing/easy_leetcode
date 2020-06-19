@@ -2,10 +2,6 @@
 
 use it, from pip：`pip install easyleetcode`
 
-or use it, from source code : **clone source** then:
-- 1.pip install these package >> `['uvicorn', 'fastapi', 'pydantic', 'aiofiles', 'jinja2']`
-- 2.run python script : `easyleetcode/web/main.py`
-
 then , only 2 line code , in any location:
 ```python
 from easyleetcode import run
@@ -16,6 +12,12 @@ run()
 # or run(host="127.0.0.1", port=8080, py_cmd_path='/Users/xxxxx/anaconda3/bin/python3 ')
 # or run(host="127.0.0.1", port=8080, py_cmd_path='D:\xxx\Python\python3.exe ')
 ```
+
+or use it, from source code : **clone source** then:
+- 1.pip install these package >> `['uvicorn', 'fastapi', 'pydantic', 'aiofiles', 'jinja2']`
+- 2.run python script : `easyleetcode/web/main.py`
+
+
 
 note:
 >If you run error in Windows platform,tell me.
