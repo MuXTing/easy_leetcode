@@ -38,12 +38,10 @@ edit code or note markdown
 or see video (if exist, tell me)
 
 or select contain keyword code use button 'Find'
-![](imgs/code_view.png)
 ![](https://img-blog.csdnimg.cn/20200618094421276.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ppYW5nNDI1Nzc2MDI0,size_16,color_FFFFFF,t_70)
 
 ## select code
 only see contain 'Sum' code
-![](imgs/code_view_find.png)
 ![](https://img-blog.csdnimg.cn/20200618094439396.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ppYW5nNDI1Nzc2MDI0,size_16,color_FFFFFF,t_70)
 
 ## code show view
@@ -52,7 +50,6 @@ code detail view
 you can run & debug & study & add code & note Markdown
 
 you can edit you python code & run you code online !
-![](imgs/code_show.png)
 ![](https://img-blog.csdnimg.cn/20200618094455622.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ppYW5nNDI1Nzc2MDI0,size_16,color_FFFFFF,t_70)
 
 
@@ -60,7 +57,6 @@ you can edit you python code & run you code online !
 code's markdown note 
 
 you can click Edit Button to Edit you note
-![](imgs/code_md.png)
 ![](https://img-blog.csdnimg.cn/20200618094510997.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ppYW5nNDI1Nzc2MDI0,size_16,color_FFFFFF,t_70)
 
 ## code markdown note edit view
@@ -69,5 +65,4 @@ code's markdown note can easy online edit, and
 you can click Save Button to Save you Edited note
 
 left textarea to edit Markdown, right textarea show markdown's result view
-![](imgs/md_edit.png)
 ![](https://img-blog.csdnimg.cn/20200618094528702.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ppYW5nNDI1Nzc2MDI0,size_16,color_FFFFFF,t_70)
