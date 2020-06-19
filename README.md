@@ -18,6 +18,22 @@ note:
 >
 >Because Windows platform I have't test
 
+
+note:
+>If you click 'Run Code' Button, but no result feedback ,tell me.
+> or, please check your system's Python run enviroment.
+>
+> Maybe  your `run` function Setting error , PS:
+>> run(host="127.0.0.1", port=8080, py_cmd_path='python ')
+>
+>> run(host="127.0.0.1", port=8080, py_cmd_path='python3 ')
+
+>> run(host="127.0.0.1", port=8080, py_cmd_path='/Users/xxxxx/anaconda3/bin/python3 ')
+
+>> run(host="127.0.0.1", port=8080, py_cmd_path='D:\xxx\Python\python3.exe ')
+
+
+
 ## Introduction
 
 [>Video Bilibili Introduction](https://www.bilibili.com/video/BV1bp4y1D7ia/)
